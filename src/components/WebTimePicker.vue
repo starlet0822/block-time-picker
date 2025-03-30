@@ -7,13 +7,14 @@
     <div class="time-wrapper">
       <template v-for="(bar, index) in timeData" :key="bar.time + index">
         <div class="time-bar">
-          <span class="time-text">{{ bar.time + ':00' }}</span>
+          <span class="time-text">{{ bar.time }}</span>
           <div class="time-full">
             <div
               v-for="block in bar.blocks"
               :key="block.value"
               :data-val="block.value"
               :data-idx="block.index"
+              :title="block.title"
               class="time-block"
               :class="{
                 'time-block--selected':
@@ -36,6 +37,8 @@
 
 <script setup>
 import { ref, onMounted, nextTick, computed, toRefs } from 'vue'
+import { minute2HHmm } from './utils'
+import dayjs from 'dayjs'
 
 const props = defineProps({
   modelValue: {
@@ -206,8 +209,13 @@ const initTimeData = () => {
       }
     }
     for (let i = 1; i <= 60 / +props.step; i++) {
+      const value = time * 60 + props.step * i
+      const endtimeStr = minute2HHmm(value)
+      const fullTime = dayjs(dayjs().format('YYYY-MM-DD') + ' ' + endtimeStr)
+      const startTimeStr = dayjs(fullTime).subtract(props.step, 'minute').format('HH:mm')
       temp.push({
-        value: time * 60 + props.step * i,
+        title: `${startTimeStr} - ${endtimeStr}`, // 每个区块提示
+        value: value,
         selected: false,
         disabled: handleDisabled(time, i),
         index: idx + i - 1,
@@ -393,34 +401,34 @@ const onmouseleave = () => {
 
   .time-bar {
     &:not(:last-child) {
-      padding-right: 8px;
+      margin-right: 3px;
     }
 
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
 
     .time-text {
-      font-size: 12px;
+      font-size: 14px;
       margin-bottom: 5px;
     }
   }
 
   .time-full {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     flex: 1;
   }
 
   .time-block {
-    width: 32px;
-    height: 40px;
+    width: 24px;
+    height: calc(40px * 2);
     border-radius: 2px;
-    line-height: 40px;
+    line-height: calc(40px * 2);
     text-align: center;
     cursor: pointer;
     background-color: v-bind(inactiveColor);
@@ -428,7 +436,7 @@ const onmouseleave = () => {
     will-change: auto;
 
     &:not(:last-child) {
-      margin-bottom: 3px;
+      margin-right: 3px;
     }
 
     &--selected {
