@@ -302,8 +302,6 @@ const onClickBlock = (bar, block, index) => {
       if (timeIdxRange.value.indexOf(index) > -1) {
         timeIdxRange.value.splice(timeIdxRange.value.indexOf(index), 1)
         startIndex.value = endIndex.value = undefined
-      } else {
-        // timeIdxRange.value.push(startIndex.value)
       }
     }
     if (index > startIndex.value) {
@@ -393,7 +391,7 @@ const onmouseleave = () => {
 
   .time-bar {
     &:not(:last-child) {
-      padding-right: 8px;
+      margin-right: 4px;
     }
 
     flex: 1;
