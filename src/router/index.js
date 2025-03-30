@@ -1,8 +1,10 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
 import MobieTimePicker from '../views/mobie-time-picker.vue'
+const mode = import.meta.env.VITE_ROUTER_HISTORY
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: mode == 'history' ? createWebHistory(import.meta.env.BASE_URL) : createWebHashHistory(),
+  strict: true,
   routes: [
     {
       path: '/',
