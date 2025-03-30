@@ -73,6 +73,9 @@ devDependencies:
   vite:
     specifier: ^6.2.1
     version: 6.2.3(sass@1.86.0)
+  vite-plugin-remove-console:
+    specifier: ^2.2.0
+    version: 2.2.0
   vite-plugin-vue-devtools:
     specifier: ^7.7.2
     version: 7.7.2(vite@6.2.3)(vue@3.5.13)
@@ -3413,6 +3416,10 @@ packages:
     transitivePeerDependencies:
       - rollup
       - supports-color
+    dev: true
+
+  /vite-plugin-remove-console@2.2.0:
+    resolution: {integrity: sha512-qgjh5pz75MdE9Kzs8J0kBwaCfifHV0ezRbB9rpGsIOxam+ilcGV7WOk91vFJXquzRmiKrFh3Hxlh0JJWAmXTbQ==}
     dev: true
 
   /vite-plugin-vue-devtools@7.7.2(vite@6.2.3)(vue@3.5.13):

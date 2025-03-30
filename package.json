@@ -37,6 +37,7 @@
     "unplugin-auto-import": "^19.1.2",
     "unplugin-vue-components": "^28.4.1",
     "vite": "^6.2.1",
+    "vite-plugin-remove-console": "^2.2.0",
     "vite-plugin-vue-devtools": "^7.7.2"
   }
 }
