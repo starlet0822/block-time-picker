@@ -21,6 +21,7 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()],
     })
   ],
+  base: '/block-time-picker/', // 仓库名
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
