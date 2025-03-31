@@ -1,8 +1,8 @@
 <script setup>
-import WebTimePicker from '@/components/MobieTimePicker.vue'
+import MobieTimePicker from '@/components/MobieTimePicker.vue'
 import { ref, reactive } from 'vue'
 import { pick } from 'lodash-es'
-import { QuestionFilled } from '@element-plus/icons-vue'
+import { QuestionFilled, Link } from '@element-plus/icons-vue'
 
 const defaultTimeRange = ref(['09:00', '18:00'])
 const timeRange1 = ref([])
@@ -58,7 +58,7 @@ const timePickerChange = (val, step) => {
     <template #header>
       <el-row type="flex" align="middle" justify="space-between">
         <div class="flex-c">
-          块状时间段选择组件(自主封装)&nbsp;
+          块状时间段选择组件(mobie端)&nbsp;
           <el-tooltip trigger="click">
             <template #content>
               <p>
@@ -72,11 +72,13 @@ const timePickerChange = (val, step) => {
             </template>
             <el-icon class="cursor-pointer"><QuestionFilled /></el-icon>
           </el-tooltip>
-
           <RouterLink to="/web">
-            <el-link class="ml-2">网页端(web)版本</el-link>
+            <el-link class="ml-2">前往网页端(web)版本</el-link>
           </RouterLink>
         </div>
+        <el-link href="https://github.com/starlet0822/block-time-picker" target="_blank">
+          <el-icon size="14" class="mr-1 align-middle"><Link /></el-icon>github 地址
+        </el-link>
       </el-row>
     </template>
 
@@ -84,34 +86,37 @@ const timePickerChange = (val, step) => {
       <el-divider content-position="left">
         基础使用: 已选时间 {{ getTimeStr(timeRange1) }}</el-divider
       >
-      <WebTimePicker v-model="timeRange1" />
+      <MobieTimePicker v-model="timeRange1" />
 
       <el-divider content-position="left">
         默认选中时间: 已选时间 {{ getTimeStr(defaultTimeRange) }}</el-divider
       >
-      <WebTimePicker v-model="defaultTimeRange" />
+      <MobieTimePicker v-model="defaultTimeRange" />
 
       <el-divider content-position="left">
         自定义选中高亮颜色（activeColor） 已选时间 {{ getTimeStr(timeRange2) }}</el-divider
       >
-      <WebTimePicker v-model="timeRange2" v-bind="pick(options, ['activeColor'])" />
+      <MobieTimePicker v-model="timeRange2" v-bind="pick(options, ['activeColor'])" />
 
       <el-divider content-position="left">
         指定可选范围（minHour：9，maxHour: 18） 已选时间
         {{ getTimeStr(timeRange3) }}</el-divider
       >
-      <WebTimePicker v-model="timeRange3" :min-hour="9" :max-hour="18" />
+      <MobieTimePicker v-model="timeRange3" :min-hour="9" :max-hour="18" />
 
       <el-divider content-position="left">
         只读（readonly）和禁用过去时间（disabledBefore） 已选时间
         {{ getTimeStr(timeRange4) }}
       </el-divider>
-      <WebTimePicker v-model="timeRange4" v-bind="pick(options, ['readonly', 'disabledBefore'])" />
+      <MobieTimePicker
+        v-model="timeRange4"
+        v-bind="pick(options, ['readonly', 'disabledBefore'])"
+      />
 
       <el-divider content-position="left">自定义时间间隔（step: 60|30|20|15|10）</el-divider>
       <template v-for="step of Object.keys(timeStepObj).reverse()" :key="step">
         <p class="my-2">每隔 {{ step }} 分钟 已选时间：{{ getTimeStr(handleValue(step)) }}</p>
-        <WebTimePicker
+        <MobieTimePicker
           :model-value="handleValue(step)"
           :step="step"
           @change="timePickerChange($event, step)"

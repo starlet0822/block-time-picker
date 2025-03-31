@@ -24,8 +24,6 @@
                   inRange.length == 2 && block.index > inRange[0] && block.index < inRange[1],
               }"
               @click="onClickBlock(bar, block, block.index)"
-              @mousemove="onmousemove(block.index)"
-              @mouseleave="onmouseleave(block.index)"
             />
           </div>
         </div>
@@ -354,26 +352,6 @@ const onClickBlock = (bar, block, index) => {
   }
 
   updateValue()
-}
-
-// 鼠标移入
-const onmousemove = (index) => {
-  if (props.readonly) {
-    return
-  } else if (timeIdxRange.value.length > 1 || startIndex.value === undefined) {
-    return
-  }
-  moveIndex.value = index
-}
-
-// 鼠标移出
-const onmouseleave = () => {
-  if (props.readonly) {
-    return
-  } else if (timeIdxRange.value.length > 1 || startIndex.value === undefined) {
-    return
-  }
-  moveIndex.value = undefined
 }
 </script>
 

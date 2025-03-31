@@ -3,7 +3,7 @@ import WebTimePicker from '@/components/WebTimePicker.vue'
 // import WebTimePicker from '@/components/MobieTimePicker.vue'
 import { ref, reactive } from 'vue'
 import { pick } from 'lodash-es'
-import { QuestionFilled } from '@element-plus/icons-vue'
+import { QuestionFilled, Link } from '@element-plus/icons-vue'
 
 const defaultTimeRange = ref(['09:00', '18:00'])
 const timeRange1 = ref([])
@@ -59,7 +59,7 @@ const timePickerChange = (val, step) => {
     <template #header>
       <el-row type="flex" align="middle" justify="space-between">
         <div class="flex-c">
-          块状时间段选择组件(自主封装)&nbsp;
+          块状时间段选择组件(web端)&nbsp;
           <el-tooltip trigger="click">
             <template #content>
               <p>
@@ -74,9 +74,12 @@ const timePickerChange = (val, step) => {
             <el-icon class="cursor-pointer"><QuestionFilled /></el-icon>
           </el-tooltip>
           <RouterLink to="/mobie">
-            <el-link class="ml-2">移动端(mobie)版本</el-link>
+            <el-link class="ml-2">前往移动端(mobie)版本</el-link>
           </RouterLink>
         </div>
+        <el-link href="https://github.com/starlet0822/block-time-picker" target="_blank">
+          <el-icon size="14" class="mr-1 align-middle"><Link /></el-icon>github 地址
+        </el-link>
       </el-row>
     </template>
 
