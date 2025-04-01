@@ -1,14 +1,57 @@
 {
   "name": "block-time-picker",
   "version": "0.0.0",
-  "private": true,
   "type": "module",
+  "description": "A time-picker base on vue3.x",
+  "keywords": [
+    "block-time-picker",
+    "time-picker",
+    "vue-component",
+    "vue3",
+    "vite"
+  ],
+  "license": "MIT",
+  "author": "wuxiaoxing",
+  "homepage": "https://starlet0822.github.io/block-time-picker/tree/main/#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/starlet0822/block-time-picker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/starlet0822/block-time-picker/issues"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.es.js",
+  "unpkg": "dist/index.umd.js",
+  "jsdelivr": "dist/index.umd.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js"
+    },
+    "./package.json": "./package.json",
+    "./*": "./*"
+  },
+  "files": [
+    "dist",
+    "src/components"
+  ],
+  "style": "dist/style.css",
   "scripts": {
     "i": "pnpm install",
     "dev": "vite",
     "build": "vite build",
+    "build:lib": "vite build",
     "build:netlify": "vite build --mode netlify",
     "preview": "vite preview",
+    "patch:version": "npm version patch --registry=https://registry.npmjs.org/",
+    "publish:lib": "npm publish --registry=https://registry.npmjs.org/",
+    "clean:lib": "rimraf node_modules",
+    "clean:cache": "rimraf node_modules/.cache/ && rimraf node_modules/.vite",
+    "clean": "pnpm clean:lib && pnpm clean:cache",
     "lint": "eslint . --fix",
     "format": "prettier --write src/",
     "deploy": "pnpm run build && gh-pages -d dist"
@@ -23,6 +66,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
+    "@rollup/plugin-terser": "^0.4.4",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vitejs/plugin-vue-jsx": "^4.1.1",
     "@vue/eslint-config-prettier": "^10.2.0",
@@ -40,5 +84,8 @@
     "vite": "^6.2.1",
     "vite-plugin-remove-console": "^2.2.0",
     "vite-plugin-vue-devtools": "^7.7.2"
+  },
+  "peerDependencies": {
+    "vue": "^3.2.0"
   }
 }

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>block-time-picker</title>
+
+  <!-- unpkg cdn -->
+  <!-- <link rel="stylesheet" href="https://unpkg.com/block-time-picker/dist/block-time-picker.css"> -->
+  <script src="//unpkg.com/vue@3.3.4/dist/vue.global.prod.js"></script>
+  <!-- <script src="https://unpkg.com/block-time-picker"></script> -->
+
+  <!-- local file -->
+  <link rel="stylesheet" href="../../dist/style.css">
+  <script src="../../dist/index.umd.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <div>
+      <h2>web端使用示例，<span>已选时间：{{timeRange1}}</span></h2>
+      <web-time-picker v-model="timeRange1" />
+    </div>
+    <div>
+      <h2>mobie端使用示例，<span>已选时间：{{timeRange2}}</h2>
+      <mobie-time-picker v-model="timeRange2" />
+    </div>
+  </div>
+</body>
+
+<script>
+  const App = {
+    data() {
+      return {
+        timeRange1: [],
+        timeRange2: [],
+      }
+    },
+    mounted() {
+      console.log(window, App, Vue)
+    },
+  };
+  Vue.createApp(App).use(BlockTimePicker.default).mount('#app');
+</script>
+
+</html>

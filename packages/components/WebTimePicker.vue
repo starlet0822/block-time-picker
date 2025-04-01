@@ -3,7 +3,7 @@
  * @Author: wuxxing
 -->
 <template>
-  <div class="block-time-picker">
+  <div class="web-time-picker">
     <div class="time-wrapper">
       <template v-for="(bar, index) in timeData" :key="bar.time + index">
         <div class="time-bar">
@@ -37,59 +37,17 @@
 
 <script setup>
 import { ref, onMounted, nextTick, computed, toRefs } from 'vue'
-import { minute2HHmm } from './utils'
+import comProps from '../props'
+import { minute2HHmm } from '../utils'
 import dayjs from 'dayjs'
 
-const props = defineProps({
-  modelValue: {
-    type: Array,
-    default: () => [],
-  },
-  // 最小小时数
-  minHour: {
-    type: [Number, String],
-    default: '0',
-  },
-  // 最大小时数
-  maxHour: {
-    type: [Number, String],
-    default: '23',
-  },
-  // 时间间隔：必须是被 60 分钟整除
-  step: {
-    type: [Number, String],
-    default: 30,
-    validator: (val) => {
-      return 60 % parseInt(val) === 0
-    },
-  },
-  // 选择范围时的分隔符
-  rangeSeparator: {
-    type: String,
-    default: ' ~ ',
-  },
-  // 激活高亮颜色
-  activeColor: {
-    type: String,
-    default: '#2e6cf3',
-  },
-  // 未激活颜色
-  inactiveColor: {
-    type: String,
-    default: '#a0a6ae',
-  },
-  readonly: Boolean, // 是否只读
-  disabledBefore: Boolean, // 是否禁用过去的时间
-
-  // TODO: 尺寸
-  size: {
-    type: String,
-    default: 'default',
-    validatior(val) {
-      return ['large', 'default', 'small'].includes(val)
-    },
-  },
+defineOptions({
+  name: 'WebTimePicker',
 })
+
+const props = defineProps(comProps)
+
+const { disabledBefore } = toRefs(props)
 
 const emit = defineEmits(['update:modelValue', 'change'])
 
@@ -191,7 +149,7 @@ const initTimeData = () => {
     const idx = (60 / +props.step) * (time - +props.minHour)
 
     const handleDisabled = (time, i) => {
-      if (!props.disabledBefore) {
+      if (!disabledBefore.value) {
         return false
       }
       if (time < nowHour) {
@@ -292,7 +250,7 @@ const onClickBlock = (bar, block, index) => {
   if (props.readonly) {
     return false
   }
-  if (props.disabledBefore) {
+  if (disabledBefore.value) {
     initTimeData()
   }
   if (block.disabled) {
@@ -385,8 +343,8 @@ const onmouseleave = () => {
 }
 </script>
 
-<style lang="scss" scoped>
-.block-time-picker {
+<style lang="scss">
+.web-time-picker {
   overflow: hidden;
   display: flex;
   box-sizing: border-box;

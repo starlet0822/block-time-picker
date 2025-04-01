@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
-import MobieTimePicker from '../views/mobie-time-picker.vue'
+import MobieTimePicker from '../views/mobie-demo.vue'
 const mode = import.meta.env.VITE_ROUTER_HISTORY
 
 const router = createRouter({
@@ -8,16 +8,16 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/web',
+      redirect: '/web-demo',
       children: [
         {
-          path: 'web',
-          name: 'WebTimePicker',
-          component: () => import('../views/web-time-picker.vue'),
+          path: 'web-demo',
+          name: 'WebDemo',
+          component: () => import('../views/web-demo.vue'),
         },
         {
-          path: 'mobie',
-          name: 'MobieTimePicker',
+          path: 'mobie-demo',
+          name: 'MobieDemo',
           component: MobieTimePicker,
         },
       ]
