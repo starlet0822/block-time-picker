@@ -1,35 +1,62 @@
-# .
+<h1 align="center">block-time-picker</h1>
+<p align="center">基于 vue3 封装的块状时间选择器 block-time-picker</p>
 
-This template should help get you started developing with Vue 3 in Vite.
+<p align="center">
+<a href="https://www.npmjs.com/package/block-time-picker" target="__blank"><img src="https://img.shields.io/npm/v/block-time-picker?color=a1b858&label=" alt="NPM version"></a>
+<a href="https://www.npmjs.com/package/block-time-picker" target="__blank"><img alt="NPM Downloads" src="https://img.shields.io/npm/dm/block-time-picker?color=50a36f&label="></a>
+</p>
 
-## Recommended IDE Setup
+[预览地址](https://starlet0822.github.io/block-time-picker/) | [预览地址2](https://block-time-picker.netlify.app/)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## 📦 安装
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-pnpm install
+```bash
+npm install block-time-picker
+# or
+yarn add block-time-picker
+# or
+pnpm add block-time-picker
 ```
 
-### Compile and Hot-Reload for Development
+## 📡 `CDN`
 
-```sh
-pnpm dev
+```html
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/block-time-picker/dist/style.css" />
+<script src="//cdn.jsdelivr.net/npm/block-time-picker"></script>
+<!-- or -->
+<link rel="stylesheet" href="//unpkg.com/block-time-picker/dist/style.css" />
+<script src="//unpkg.com/block-time-picker"></script>
 ```
 
-### Compile and Minify for Production
+## ⚙️ 用法
 
-```sh
-pnpm build
+### 局部注册（单文件）
+
+```js
+import "block-time-picker/dist/style.css";
+import { WebTimePicker, MobieTimePicker } from "block-time-picker";
+// web端使用
+<web-time-picker v-model="timeRange"></web-time-picker>
+// mobie端使用
+<mobie-time-picker v-model="timeRange"></mobie-time-picker>
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+### 全局注册（main.js）
 
-```sh
-pnpm lint
+```js
+import { createApp } from 'vue'
+import App from './App.vue'
+
+import 'block-time-picker/dist/style.css'
+import BlockTimePicker from 'block-time-picker'
+
+const app = createApp(App)
+
+app.use(BlockTimePicker).mount('#app')
 ```
+
+[点击查看按需、全局以及`Html`文件引入的用法示例](https://github.com/starlet0822/block-time-picker/tree/main/playgrounds)
+
+## 许可证
+
+[MIT © 2025-present, wxx0822](./LICENSE)
