@@ -34,7 +34,7 @@
 
 <script setup>
 import { ref, onMounted, nextTick, computed, toRefs } from 'vue'
-import comProps from '../props'
+import comProps from './props'
 
 defineOptions({
   name: 'MobieTimePicker',

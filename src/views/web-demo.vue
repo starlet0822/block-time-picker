@@ -72,7 +72,7 @@ const timePickerChange = (val, step) => {
             <el-icon class="cursor-pointer"><QuestionFilled /></el-icon>
           </el-tooltip>
           <RouterLink to="/mobie-demo">
-            <el-link class="ml-2">前往移动端(mobie)版本</el-link>
+            <el-link class="ml-2">查看移动端(mobie)版本</el-link>
           </RouterLink>
         </div>
         <el-link href="https://github.com/starlet0822/block-time-picker" target="_blank">

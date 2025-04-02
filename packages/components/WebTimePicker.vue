@@ -37,7 +37,7 @@
 
 <script setup>
 import { ref, onMounted, nextTick, computed, toRefs } from 'vue'
-import comProps from '../props'
+import comProps from './props'
 import { minute2HHmm } from '../utils'
 import dayjs from 'dayjs'
 
