@@ -47,7 +47,7 @@ defineOptions({
 
 const props = defineProps(comProps)
 
-const { disabledBefore } = toRefs(props)
+const { modelValue, minHour, maxHour, step, readonly, disabledBefore } = toRefs(props)
 
 const emit = defineEmits(['update:modelValue', 'change'])
 
@@ -92,8 +92,8 @@ const updateValue = () => {
     emit('change', value)
     return
   }
-  const startTime = +props.minHour * 60 + Number(props.step) * startIndex.value + Number(props.step)
-  const endTime = +props.minHour * 60 + Number(props.step) * endIndex.value + Number(props.step)
+  const startTime = +minHour.value * 60 + Number(step.value) * startIndex.value + Number(step.value)
+  const endTime = +minHour.value * 60 + Number(step.value) * endIndex.value + Number(step.value)
   let eHour = undefined // 结束小时
   let eMin = undefined // 结束分钟
   let sHour = undefined // 开始小时
@@ -101,12 +101,12 @@ const updateValue = () => {
   let sTime = undefined // 开始时间
   let eTime = undefined // 结束时间
   if (startTime && endTime) {
-    sHour = minute2hour(startTime - +props.step)
+    sHour = minute2hour(startTime - +step.value)
     eHour = minute2hour(endTime)
     sMin =
-      (startTime - +props.step) % 60 === 0
+      (startTime - +step.value) % 60 === 0
         ? '00'
-        : Math.round(((startTime - +props.step) / 60 - sHour) * 60)
+        : Math.round(((startTime - +step.value) / 60 - sHour) * 60)
     eMin = endTime % 60 === 0 ? '00' : Math.round((endTime / 60 - eHour) * 60)
     sTime = sHour + ':' + sMin
     // 处理临界时间
@@ -116,12 +116,12 @@ const updateValue = () => {
     }
     eTime = eHour + ':' + eMin
   } else {
-    sHour = minute2hour(startTime - +props.step)
+    sHour = minute2hour(startTime - +step.value)
     eHour = minute2hour(startTime)
     sMin =
-      (startTime - +props.step) % 60 === 0
+      (startTime - +step.value) % 60 === 0
         ? '00'
-        : Math.round(((startTime - +props.step) / 60 - sHour) * 60)
+        : Math.round(((startTime - +step.value) / 60 - sHour) * 60)
     eMin = startTime % 60 === 0 ? '00' : Math.round((startTime / 60 - eHour) * 60)
 
     sTime = sHour + ':' + sMin
@@ -146,7 +146,7 @@ const initTimeData = () => {
   const times = []
   const blocks = (time) => {
     const temp = []
-    const idx = (60 / +props.step) * (time - +props.minHour)
+    const idx = (60 / +step.value) * (time - +minHour.value)
 
     const handleDisabled = (time, i) => {
       if (!disabledBefore.value) {
@@ -156,8 +156,8 @@ const initTimeData = () => {
         return true
       }
       if (nowHour === time) {
-        const s = +props.step * (i - 1)
-        const e = +props.step * i
+        const s = +step.value * (i - 1)
+        const e = +step.value * i
         if (nowMin >= s && nowMin <= e) {
           return true
         }
@@ -166,11 +166,11 @@ const initTimeData = () => {
         }
       }
     }
-    for (let i = 1; i <= 60 / +props.step; i++) {
-      const value = time * 60 + props.step * i
+    for (let i = 1; i <= 60 / +step.value; i++) {
+      const value = time * 60 + step.value * i
       const endtimeStr = minute2HHmm(value)
       const fullTime = dayjs(dayjs().format('YYYY-MM-DD') + ' ' + endtimeStr)
-      const startTimeStr = dayjs(fullTime).subtract(props.step, 'minute').format('HH:mm')
+      const startTimeStr = dayjs(fullTime).subtract(step.value, 'minute').format('HH:mm')
       temp.push({
         title: `${startTimeStr} - ${endtimeStr}`, // 每个区块提示
         value: value,
@@ -182,7 +182,7 @@ const initTimeData = () => {
     return temp
   }
 
-  for (let i = +props.minHour; i <= +props.maxHour; i++) {
+  for (let i = +minHour.value; i <= +maxHour.value; i++) {
     const item = {
       time: undefined,
       blocks: blocks(i),
@@ -195,7 +195,6 @@ const initTimeData = () => {
 
 // 回显
 const initTimeRange = () => {
-  const { modelValue, step } = toRefs(props)
   if (Array.isArray(modelValue.value)) {
     if (modelValue.value.length === 2) {
       const getHourByTime = (time) => {
@@ -247,7 +246,7 @@ const initTimeRange = () => {
 
 // 点击选择
 const onClickBlock = (bar, block, index) => {
-  if (props.readonly) {
+  if (readonly.value) {
     return false
   }
   if (disabledBefore.value) {
@@ -324,7 +323,7 @@ const onClickBlock = (bar, block, index) => {
 
 // 鼠标移入
 const onmousemove = (index) => {
-  if (props.readonly) {
+  if (readonly.value) {
     return
   } else if (timeIdxRange.value.length > 1 || startIndex.value === undefined) {
     return
@@ -334,7 +333,7 @@ const onmousemove = (index) => {
 
 // 鼠标移出
 const onmouseleave = () => {
-  if (props.readonly) {
+  if (readonly.value) {
     return
   } else if (timeIdxRange.value.length > 1 || startIndex.value === undefined) {
     return

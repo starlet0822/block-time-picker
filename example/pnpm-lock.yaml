@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   block-time-picker:
-    specifier: ^0.0.4
-    version: 0.0.4(vue@3.5.13)
+    specifier: ^1.0.1
+    version: 1.0.1(vue@3.5.13)
   splitpanes:
     specifier: ^4.0.3
     version: 4.0.3(vue@3.5.13)
@@ -1263,8 +1263,8 @@ packages:
     resolution: {integrity: sha512-5WeXXAvTmitV1RqJFppT5QtUiz2p1mRSYU000Jkft5ZUCLJIk4uQriYNO50HknxKwM6jd8utNc66K1qGIwwWBQ==}
     dev: true
 
-  /block-time-picker@0.0.4(vue@3.5.13):
-    resolution: {integrity: sha512-E5/ahyB80LuQyzH36rggIh/jzZPZGbxOCJN4YC+YSf3eilrB+IqQ73YlLs36n4TKmi5uRYihtnbg8D48oKqg+A==}
+  /block-time-picker@1.0.1(vue@3.5.13):
+    resolution: {integrity: sha512-SX/iZhfOVyM4ozW9MGBtXlDojLspi6Vt38qB5KR9vyrf//5Ej6eZ8MMH9ck8dMbZJWivk68HHTvfUue5qssc1w==}
     peerDependencies:
       vue: ^3.2.0
     dependencies:

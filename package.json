@@ -1,6 +1,6 @@
 {
   "name": "block-time-picker",
-  "version": "0.0.0",
+  "version": "1.0.2",
   "type": "module",
   "description": "A time-picker base on vue3.x",
   "keywords": [
@@ -47,8 +47,8 @@
     "build:lib": "vite build",
     "build:netlify": "vite build --mode netlify",
     "preview": "vite preview",
-    "patch:version": "npm version patch --registry=https://registry.npmjs.org/",
-    "publish:lib": "npm publish --registry=https://registry.npmjs.org/",
+    "patch:version": "npm version patch",
+    "publish:lib": "npm publish",
     "clean:lib": "rimraf node_modules",
     "clean:cache": "rimraf node_modules/.cache/ && rimraf node_modules/.vite",
     "clean": "pnpm clean:lib && pnpm clean:cache",

@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 // 局部引入
 import { WebTimePicker, MobieTimePicker } from 'block-time-picker'
-import 'block-time-picker/dist/block-time-picker.css'
+import 'block-time-picker/dist/style.css'
 
 const timeRange1 = ref([])
 const timeRange2 = ref([])
