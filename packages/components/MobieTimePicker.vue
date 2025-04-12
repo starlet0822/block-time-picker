@@ -172,7 +172,7 @@ const initTimeData = () => {
     return temp
   }
 
-  for (let i = +minHour.value; i <= +maxHour.value; i++) {
+  for (let i = +minHour.value; i < +maxHour.value; i++) {
     const item = {
       time: undefined,
       blocks: blocks(i),
