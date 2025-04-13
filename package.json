@@ -1,6 +1,6 @@
 {
   "name": "block-time-picker",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "module",
   "description": "A time-picker base on vue3.x",
   "keywords": [
