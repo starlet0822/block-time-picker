@@ -93,7 +93,7 @@ const timePickerChange = (val, step) => {
       <WebTimePicker v-model="defaultTimeRange" />
 
       <el-divider content-position="left">
-        自定义选中高亮颜色（activeColor） 已选时间 {{ getTimeStr(timeRange2) }}</el-divider
+        自定义选中高亮颜色（activeColor: #FFCD5E） 已选时间 {{ getTimeStr(timeRange2) }}</el-divider
       >
       <WebTimePicker v-model="timeRange2" v-bind="pick(options, ['activeColor'])" />
 
@@ -104,7 +104,7 @@ const timePickerChange = (val, step) => {
       <WebTimePicker v-model="timeRange3" :min-hour="9" :max-hour="18" />
 
       <el-divider content-position="left">
-        只读（readonly）和禁用过去时间（disabledBefore） 已选时间
+        只读（readonly: true）和禁用过去时间（disabledBefore: true） 已选时间
         {{ getTimeStr(timeRange4) }}
       </el-divider>
       <WebTimePicker v-model="timeRange4" v-bind="pick(options, ['readonly', 'disabledBefore'])" />
